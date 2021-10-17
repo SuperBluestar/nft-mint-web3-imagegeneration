@@ -43,7 +43,14 @@ export default function Mint() {
       .then(function (accounts) {
         window.web3.eth.net.getNetworkType()
         // checks if connected network is mainnet (change this to rinkeby if you wanna test on testnet)
-        .then((network) => {console.log(network);if(network != "main"){alert("You are on " + network+ " network. Change network to mainnet or you won't be able to do anything here")} });  
+        .then((network) => {
+          console.log(network);
+          if(network != "main"){
+            alert("You are on " + network+ " network. Change network to mainnet or you won't be able to do anything here")
+          } 
+        }).catch(function (err) {
+          console.log(err)
+        });  
         let wallet = accounts[0]
         setWalletAddress(wallet)
         setSignedIn(true)
@@ -51,8 +58,8 @@ export default function Mint() {
 
   })
   .catch(function (error) {
-  // Handle error. Likely the user rejected the login
-  console.error(error)
+    // Handle error. Likely the user rejected the login
+    console.error(error)
   })
   }
 
